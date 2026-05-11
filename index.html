@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="曾子荣 - 视觉工艺工程师 & 创意技术专家 | 个人作品集网站，展示平面设计、UI设计、插画设计等作品">
+    <meta name="keywords" content="视觉设计,UI设计,平面设计,插画设计,作品集,曾子荣">
+    <meta name="author" content="曾子荣">
+    <meta name="theme-color" content="#050505">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="曾子荣 - 视觉工艺工程师 | 创意技术专家">
+    <meta name="twitter:description" content="视觉工艺工程师 & 创意技术专家的个人作品集网站">
+    <meta property="og:title" content="曾子荣 - 视觉工艺工程师 | 创意技术专家">
+    <meta property="og:description" content="视觉工艺工程师 & 创意技术专家的个人作品集网站">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zzrzp.github.io">
+    <meta property="og:image" content="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=professional%20designer%20portfolio%20showcase%20with%20neon%20green%20accent&image_size=landscape_16_9">
+    <title>曾子荣 - 视觉工艺工程师 | 创意技术专家 | 个人作品集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Schema.org 结构化数据 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "曾子荣",
+        "alternateName": "ZENG ZIRONG",
+        "jobTitle": "视觉工艺工程师",
+        "description": "专注于视觉设计与创意技术的跨界设计师，拥有多年平面设计、UI设计及插画创作经验",
+        "url": "https://zzrzp.github.io",
+        "sameAs": [
+            "https://github.com/zzrzp",
+            "https://linkedin.com/in/zeng-zirong"
+        ],
+        "image": "https://neeko-copilot.bytedance.net/api/text_to_image?prompt=professional%20portrait%20photo%20of%20a%20young%20creative%20designer&image_size=square",
+        "knowsAbout": [
+            "视觉设计",
+            "UI设计",
+            "平面设计",
+            "插画设计",
+            "光刻工艺",
+            "AIGC技术"
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "自由职业"
+        }
+    }
+    </script>
+    
+    <!-- 链接预加载优化 -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preload" href="assets/css/style.min.css" as="style">
+    <link rel="preload" href="assets/js/main.min.js" as="script">
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div id="loader" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #050505;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+    ">
+        <div style="
+            width: 60px;
+            height: 60px;
+            border: 3px solid #222;
+            border-top-color: #6FFF00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        "></div>
+        <div style="
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6FFF00;
+            font-weight: 600;
+            letter-spacing: 2px;
+        ">LOADING...</div>
+        <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+    </div>
+
+    <div class="cursor-glow"></div>
+    <div class="cyber-grid"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <a href="#" class="nav-brand">ZENG</a>
+            <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active">首页</a></li>
+                <li><a href="#about" class="nav-link">关于</a></li>
+                <li><a href="#skills" class="nav-link">技能</a></li>
+                <li><a href="#experience" class="nav-link">经历</a></li>
+                <li><a href="#portfolio" class="nav-link">作品</a></li>
+                <li><a href="#contact" class="nav-link">联系</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-avatar">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=140&h=140&fit=crop&crop=center" alt="曾子荣" class="profile-pic" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ccircle cx=%2750%27 cy=%2750%27 r=%2745%27 fill=%27%236FFF00%27/%3E%3Ctext x=%2750%27 y=%2755%27 text-anchor=%27middle%27 fill=%27%23000%27 font-size=%2724%27 font-weight=%27bold%27%3EZZR%3C/text%3E%3C/svg%3E'">
+            </div>
+            <h1 class="hero-title">曾子荣</h1>
+            <p class="hero-subtitle">视觉工艺工程师 / 创意技术专家</p>
+            <a href="#portfolio" class="hero-btn">EXPLORE WORK</a>
+        </div>
+        <div class="particles"></div>
+    </section>
+
+    <section id="about" class="section bg-secondary">
+        <div class="section-container">
+            <h2 class="section-title reveal">关于我</h2>
+            <div class="about-content">
+                <div class="reveal">
+                    <p class="about-text">
+                        <span class="about-highlight">具备三年视觉设计与工艺生产实操经验的"跨界玩家"。</span>
+                    </p>
+                    <p class="about-text">
+                        熟练掌握Adobe全家桶、Blender 3D建模及主流AIGC工具。从早期的原始印花设计，到深耕设计文件标准化分层，再到熟练操作大型光刻机与光刻制版。
+                    </p>
+                    <p class="about-text">
+                        我不仅能在虚拟世界中构建充满奇幻色彩的视觉效果，更具备将设计源文件完美转化为3D浮凸实体工艺的"软硬双修"能力。
+                    </p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card reveal">
+                        <div class="stat-number">21</div>
+                        <div class="stat-label">年龄</div>
+                        <div class="stat-label-en">AGE</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number">03+</div>
+                        <div class="stat-label">年经验</div>
+                        <div class="stat-label-en">EXP</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number highlight">100%</div>
+                        <div class="stat-label">全情投入</div>
+                        <div class="stat-label-en">FULL</div>
+                    </div>
+                    <div class="stat-card reveal">
+                        <div class="stat-number">MAX</div>
+                        <div class="stat-label">学习力</div>
+                        <div class="stat-label-en">LEARN</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="section-container">
+            <h2 class="section-title reveal">专业技能</h2>
+            <div class="skill-rings">
+                <div class="skill-ring reveal" style="--progress: 95">
+                    <div class="skill-inner">
+                        <div class="skill-percent">95%</div>
+                        <div class="skill-name">光刻工艺</div>
+                    </div>
+                </div>
+                <div class="skill-ring reveal" style="--progress: 90">
+                    <div class="skill-inner">
+                        <div class="skill-percent">90%</div>
+                        <div class="skill-name">文件处理</div>
+                    </div>
+                </div>
+                <div class="skill-ring reveal" style="--progress: 85">
+                    <div class="skill-inner">
+                        <div class="skill-percent">85%</div>
+                        <div class="skill-name">AIGC技术</div>
+                    </div>
+                </div>
+                <div class="skill-ring reveal" style="--progress: 88">
+                    <div class="skill-inner">
+                        <div class="skill-percent">88%</div>
+                        <div class="skill-name">视觉设计</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-cards">
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <h3 class="skill-card-title">光栅与光刻工艺</h3>
+                    <p class="skill-card-desc">精通大型光刻机打印调焦、控胶与对位。熟练掌握光刻机操作、测微物镜精度及胶片转动。</p>
+                    <div class="skill-card-tags">
+                        <span class="skill-tag">光刻工艺</span>
+                        <span class="skill-tag">微纳制造</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">
+                        <i class="fas fa-file-code"></i>
+                    </div>
+                    <h3 class="skill-card-title">生产级文件标准化</h3>
+                    <p class="skill-card-desc">拥有丰富的图文文件解析能力，能高效完成高精度PS文件的标准化分层与管理，为生产提供保障。</p>
+                    <div class="skill-card-tags">
+                        <span class="skill-tag">PS图层</span>
+                        <span class="skill-tag">流程管控</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="skill-card-title">AIGC与3D视觉</h3>
+                    <p class="skill-card-desc">精通Adobe全家桶，熟练运用Blender进行建模渲染。深度掌握ComfyUI本地部署与应用。</p>
+                    <div class="skill-card-tags">
+                        <span class="skill-tag">ComfyUI</span>
+                        <span class="skill-tag">Blender</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="skill-card-title">视觉排版与创意</h3>
+                    <p class="skill-card-desc">具备优秀的素材整合、排版设计及视觉效果展现能力，能精准将抽象需求转化为高品质视觉作品。</p>
+                    <div class="skill-card-tags">
+                        <span class="skill-tag">视觉设计</span>
+                        <span class="skill-tag">创意策划</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="experience-grid"></div>
+        <div class="experience-glow"></div>
+        <div class="experience-glow"></div>
+        <div class="section-container">
+            <h2 class="section-title reveal">成长轨迹</h2>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">近期阶段</div>
+                        <h3 class="timeline-title">光刻与光栅工艺工程师</h3>
+                        <p class="timeline-desc">独立负责两台1.5m×2m大幅面光栅打印机的日常运行与维护，深度参与光刻调试、玻璃基板涂胶及胶片转印，实现高品质物理输出。</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">中期阶段</div>
+                        <h3 class="timeline-title">视觉文件处理与技术专员</h3>
+                        <p class="timeline-desc">作为设计与生产核心枢纽，负责接收并解析外部复杂设计稿，主导实施PS文件的标准化分层处理与规范化管理。</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">早期阶段</div>
+                        <h3 class="timeline-title">服装印花视觉设计师</h3>
+                        <p class="timeline-desc">根据市场与客户需求，运用PS进行全因素整合与二次创作，熟练使用PS制作高精度的服装印花图案及上身效果图纸。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="section-container">
+            <h2 class="section-title reveal">视觉作品展</h2>
+            
+            <div class="portfolio-showcase">
+                <div class="portfolio-image-wrapper reveal full-width"><img data-src="portfolio_01.webp" alt="作品集大标题" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_02.webp" alt="作品展示2" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_03.webp" alt="作品展示3" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_04.webp" alt="作品展示4" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_05.webp" alt="作品展示5" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_06.webp" alt="作品展示6" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_07.webp" alt="作品展示7" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal full-width"><img data-src="portfolio_08.webp" alt="副标题8" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_09.webp" alt="作品展示9" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_10.webp" alt="作品展示10" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_11.webp" alt="作品展示11" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_12.webp" alt="作品展示12" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_13.webp" alt="作品展示13" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_14.webp" alt="作品展示14" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_15.webp" alt="作品展示15" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal full-width"><img data-src="portfolio_16.webp" alt="副标题16" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_17.webp" alt="作品展示17" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_18.webp" alt="作品展示18" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_19.webp" alt="作品展示19" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_20.webp" alt="作品展示20" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal"><img data-src="portfolio_21.webp" alt="作品展示21" class="lazy-image"></div>
+                <div class="portfolio-image-wrapper reveal full-width"><img data-src="portfolio_22.webp" alt="致谢结尾" class="lazy-image"></div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-secondary">
+        <div class="section-container reveal">
+            <h2 class="section-title">建立连接</h2>
+            
+            <button id="backToTop" class="back-to-top" style="
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                background: #6FFF00;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 15px rgba(111, 255, 0, 0.4);
+            ">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; color: #000;">
+                    <path d="M18 15l-6-6-6 6"/>
+                </svg>
+            </button>
+            
+            <div class="contact-content">
+                <div class="contact-intro">
+                    <p class="contact-text">期待与您的合作交流</p>
+                    <p class="contact-subtext">无论是项目合作、技术探讨还是设计咨询，我都期待与您建立联系</p>
+                </div>
+                
+                <div class="contact-info">
+                    <a href="mailto:zzr1042816106@163.com" class="contact-email">
+                        <i class="fas fa-envelope"></i>
+                        <span>zzr1042816106@163.com</span>
+                    </a>
+                    
+                    <div class="contact-wechat">
+                        <i class="fab fa-weixin"></i>
+                        <span>微信：zp13762974031</span>
+                    </div>
+                </div>
+                
+                <div class="contact-links">
+                    <a href="#" class="contact-link" title="微信"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" class="contact-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+                
+                <div class="contact-divider"></div>
+                
+                <div class="contact-quote">
+                    <p>设计是解决问题的艺术，技术是实现梦想的桥梁</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-text">2026 ZENG ZIRONG. ALL RIGHTS RESERVED.</div>
+        <div class="footer-quote">VISUAL CRAFTSMANSHIP ENGINEER</div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+/* ================================================
+ * 个人作品集网站 - 终极优化样式文件
+ * 作者：曾子荣
+ * ================================================ */
+
+/* --- 1. 高级感色彩与变量 --- */
+:root {
+    --bg-primary: #0a0a0c;
+    --bg-secondary: #121215;
+    --text-primary: #f0f0f0;
+    --text-secondary: #8a8a93;
+    --accent-color: #6FFF00;
+    --accent-muted: rgba(111, 255, 0, 0.15);
+    --accent-hover: #52cc00;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* --- 2. 全局重置与平滑滚动 --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { 
+    scroll-behavior: smooth; 
+    scroll-padding-top: 80px;
+}
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 3. 加载动画 (Loader) --- */
+.loader-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-primary);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 9999; transition: opacity 0.5s ease;
+}
+.loader-spinner {
+    width: 60px; height: 60px; border: 3px solid #222; border-top-color: var(--accent-color);
+    border-radius: 50%; animation: spin 1s linear infinite;
+}
+.loader-text {
+    margin-top: 20px; font-size: 14px; color: var(--accent-color); font-weight: 600; letter-spacing: 2px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- 4. 背景与特效 --- */
+.cyber-grid {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(rgba(111, 255, 0, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(111, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px; pointer-events: none; z-index: 0;
+}
+.cursor-glow {
+    position: fixed; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(111, 255, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none; z-index: 0; transform: translate(-50%, -50%);
+}
+
+/* --- 5. 导航栏 --- */
+.header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: rgba(10, 10, 12, 0.9); backdrop-filter: blur(20px);
+    z-index: 1000; border-bottom: 1px solid var(--border-color);
+}
+.navbar {
+    max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center; height: 70px;
+}
+.nav-brand { font-size: 24px; font-weight: 900; color: var(--accent-color); text-decoration: none; letter-spacing: 2px; }
+.nav-menu { display: flex; list-style: none; gap: 40px; }
+.nav-link {
+    position: relative; color: var(--text-secondary); text-decoration: none;
+    font-size: 14px; font-weight: 600; letter-spacing: 1px; transition: color 0.3s ease;
+}
+.nav-link:hover, .nav-link.active { color: var(--accent-color); }
+.nav-link::after {
+    content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px;
+    background: var(--accent-color); transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.hamburger { display: none; background: none; border: none; color: var(--accent-color); font-size: 24px; cursor: pointer; }
+
+/* --- 6. 基础排版 --- */
+section { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 100px 0; }
+.section-container { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; }
+.section-title {
+    text-align: center; font-size: 36px; font-weight: 900; margin-bottom: 60px; position: relative;
+}
+.section-title::after {
+    content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 3px; background: var(--accent-color);
+}
+.bg-secondary { background: var(--bg-secondary); }
+
+/* --- 7. Hero 首屏 --- */
+#hero { flex-direction: column; justify-content: center; text-align: center; }
+.hero-content { z-index: 1; text-align: center; }
+.hero-avatar {
+    width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 30px; padding: 3px;
+    background: linear-gradient(135deg, var(--accent-color), transparent);
+    box-shadow: 0 0 30px var(--accent-muted); flex-shrink: 0;
+}
+.profile-pic { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid var(--bg-primary); }
+.hero-title {
+    font-size: 56px; font-weight: 900; margin-bottom: 16px;
+    background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px;
+}
+.hero-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 40px; letter-spacing: 3px; }
+.hero-btn {
+    display: inline-block; padding: 14px 40px; background: var(--accent-color); color: #000;
+    text-decoration: none; font-weight: 700; border-radius: 4px; transition: all 0.3s ease;
+}
+.hero-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 30px rgba(111, 255, 0, 0.4); }
+.particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+.particle { position: absolute; background: var(--accent-color); border-radius: 50%; opacity: 0; }
+
+/* --- 8. 关于 & 数据卡片 --- */
+.about-content { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 50px; }
+.about-text { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 30px; }
+.about-highlight { color: var(--accent-color); font-weight: 700; }
+
+/* ================================================
+ * [ZENG] 关于区域视觉终极增强 (3D激活 + 纯CSS电路追踪)
+ * ================================================ */
+
+/* 1. 为卡片区域开启高级 Perspective (在 stats-grid 上) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    perspective: 1500px;
+}
+
+/* 2. 重构数据卡片骨架 */
+.stat-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(10px);
+    transform-style: preserve-3d;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3. 卡片 3D 激活效果 (Hover 时) */
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--accent-muted);
+    transform: translateY(-12px) rotateX(10deg) rotateY(-5deg);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6),
+                0 0 15px var(--accent-muted);
+}
+
+/* 4. 子元素 Hover 时的 3D 位移 (开启 preserve-3d 后) */
+.stat-card:hover .stat-number,
+.stat-card:hover .stat-label {
+    transform: translateZ(40px);
+}
+.stat-card:hover .stat-label-en {
+    transform: translateZ(15px);
+}
+
+/* --- 5. 纯 CSS 炫酷电路边框追踪 (使用伪元素) --- */
+.stat-card::before,
+.stat-card::after {
+    content: '';
+    position: absolute;
+    background: var(--accent-color);
+    filter: blur(1px) drop-shadow(0 0 6px var(--accent-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.stat-card:hover::before,
+.stat-card:hover::after {
+    opacity: 0.8;
+}
+
+/* 追踪光流动画定义 */
+@keyframes trace-loop-top-right {
+    0%, 100% { top: 0; left: 0; width: 0; height: 1px; }
+    25% { top: 0; left: 0; width: 100%; height: 1px; }
+    50% { top: 0; right: 0; width: 1px; height: 100%; }
+    75% { top: 100%; right: 0; width: 1px; height: 0; }
+}
+@keyframes trace-loop-bottom-left {
+    0%, 100% { bottom: 0; right: 0; width: 0; height: 1px; }
+    25% { bottom: 0; right: 0; width: 100%; height: 1px; }
+    50% { bottom: 0; left: 0; width: 1px; height: 100%; }
+    75% { bottom: 100%; left: 0; width: 1px; height: 0; }
+}
+
+/* 应用追踪动画 */
+.stat-card::before {
+    animation: trace-loop-top-right 4s linear infinite;
+}
+.stat-card::after {
+    animation: trace-loop-bottom-left 4s linear infinite;
+}
+
+/* --- 6. 数字激活 (进阶) --- */
+@keyframes num-pulse {
+    0%, 100% { opacity: 0.9; filter: none; }
+    50% { opacity: 1; filter: drop-shadow(0 0 12px var(--accent-color)); }
+}
+
+.stat-card:hover .stat-number {
+    animation: num-pulse 1.2s ease-in-out infinite;
+}
+
+/* 7. 数据卡片依次进场延时 */
+.stat-card:nth-child(1).reveal { transition-delay: 0s; }
+.stat-card:nth-child(2).reveal { transition-delay: 0.1s; }
+.stat-card:nth-child(3).reveal { transition-delay: 0.2s; }
+.stat-card:nth-child(4).reveal { transition-delay: 0.3s; }
+
+/* 基础文字样式 */
+.stat-number { font-size: 40px; font-weight: 900; color: #fff; margin-bottom: 8px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+.stat-number.highlight { color: var(--accent-color); }
+.stat-label { font-size: 14px; color: #fff; font-weight: 600; letter-spacing: 2px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+.stat-label-en { font-size: 10px; color: var(--text-secondary); margin-top: 4px; letter-spacing: 3px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
+
+/* --- 9. 技能环与卡片 --- */
+.skill-rings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; justify-items: center; }
+.skill-ring { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+.skill-ring::before {
+    content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
+    background: conic-gradient(var(--accent-color) calc(var(--progress) * 1%), rgba(111, 255, 0, 0.1) calc(var(--progress) * 1%));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff calc(100% - 8px));
+}
+.skill-inner {
+    width: 130px; height: 130px; border-radius: 50%; background: var(--bg-secondary);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.skill-percent { font-size: 28px; font-weight: 900; color: var(--accent-color); }
+.skill-name { font-size: 12px; color: #fff; margin-top: 4px; font-weight: 600; }
+.skill-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 80px; }
+.skill-card:last-child { grid-column: 2; }
+.skill-card {
+    background: rgba(255, 255, 255, 0.02); padding: 40px 32px; border-radius: 16px;
+    border: 1px solid var(--border-color); transition: all 0.4s ease; backdrop-filter: blur(10px);
+}
+.skill-card:hover {
+    border-color: var(--accent-muted); background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-muted);
+}
+.skill-card-icon { width: 50px; height: 50px; background: rgba(111, 255, 0, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent-color); font-size: 20px; }
+.skill-card-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+.skill-card-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+.skill-tag { font-size: 12px; color: var(--accent-color); background: rgba(111, 255, 0, 0.1); padding: 6px 14px; border-radius: 20px; }
+
+/* --- 10. 经历时间轴 --- */
+.timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 40px 0; }
+.timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--border-color); transform: translateX(-50%); }
+.timeline-item { position: relative; margin-bottom: 60px; display: flex; justify-content: center; }
+.timeline-item:nth-child(odd) .timeline-content { margin-right: calc(50% + 40px); text-align: right; }
+.timeline-item:nth-child(even) .timeline-content { margin-left: calc(50% + 40px); }
+.timeline-dot {
+    position: absolute; left: 50%; top: 24px; width: 12px; height: 12px; background: var(--bg-primary);
+    border: 2px solid var(--accent-color); border-radius: 50%; transform: translateX(-50%); z-index: 2;
+}
+.timeline-content { width: calc(50% - 40px); background: rgba(255, 255, 255, 0.02); padding: 32px; border-radius: 8px; border: 1px solid var(--border-color); }
+.timeline-date { font-size: 13px; color: var(--accent-color); font-weight: 700; margin-bottom: 12px; }
+.timeline-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; color: #fff; }
+
+/* --- 11. 终极优化的 作品集排版 --- */
+.portfolio-showcase {
+    max-width: 1000px; margin: 0 auto; padding: 40px 0; display: flex; flex-direction: column;
+    align-items: center; gap: 80px;
+}
+.portfolio-image-wrapper {
+    width: 100%; border-radius: 16px; overflow: hidden; background: var(--bg-secondary);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+.lazy-image { opacity: 0; transition: opacity 0.8s ease, transform 0.5s ease; width: 100%; height: auto; display: block; }
+.portfolio-image-wrapper:hover .lazy-image { transform: scale(1.02); }
+
+/* --- 12. 底部与联系方式 --- */
+.contact-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.contact-intro {
+    margin-bottom: 16px;
+}
+
+.contact-text {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.contact-subtext {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px 48px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-email:hover {
+    color: var(--accent-color);
+    transform: translateX(4px);
+}
+
+.contact-email i {
+    color: var(--accent-color);
+    font-size: 20px;
+}
+
+.contact-wechat {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.contact-wechat i {
+    color: var(--accent-color);
+    font-size: 20px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+}
+
+.contact-link {
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    font-size: 20px;
+}
+
+.contact-link:hover {
+    background: rgba(111, 255, 0, 0.15);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-6px) scale(1.1);
+    box-shadow: 0 10px 30px rgba(111, 255, 0, 0.3);
+}
+
+.contact-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    margin: 16px 0;
+}
+
+.contact-quote {
+    padding-top: 16px;
+}
+
+.contact-quote p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-style: italic;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
+
+.footer {
+    background: #000;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.footer-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.footer-quote {
+    font-size: 11px;
+    color: var(--accent-color);
+    letter-spacing: 4px;
+    opacity: 0.8;
+}
+
+/* --- 13. 返回顶部按钮 --- */
+.back-to-top {
+    position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: var(--accent-color);
+    border: none; border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    z-index: 9999; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(111, 255, 0, 0.4);
+}
+.back-to-top svg { width: 24px; height: 24px; color: #000; }
+.back-to-top:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(111, 255, 0, 0.5); }
+
+/* --- 14. 动画类 --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+/* --- 15. 响应式适配 --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed; top: 70px; left: 0; width: 100%; background: rgba(10, 10, 12, 0.95);
+        flex-direction: column; padding: 20px; gap: 20px; display: none;
+    }
+    .nav-menu.active { display: flex; }
+    .hamburger { display: block; }
+    .hero-title { font-size: 32px; }
+    .stats-grid, .skill-rings { grid-template-columns: repeat(2, 1fr); }
+    .skill-cards { grid-template-columns: 1fr; }
+    .timeline::before { left: 15px; }
+    .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content {
+        margin: 0 0 0 40px; width: calc(100% - 40px); text-align: left;
+    }
+    .timeline-dot { left: 15px; transform: none; }
+    .portfolio-showcase { padding: 30px 10px; gap: 40px; }
+}
