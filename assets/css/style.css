@@ -448,8 +448,40 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
     .nav-menu.active { display: flex; }
     .hamburger { display: block; }
     .hero-title { font-size: 32px; }
-    .stats-grid, .skill-rings { grid-template-columns: repeat(2, 1fr); }
-    .skill-cards { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    
+    /* 技能部分移动端优化 */
+    .skill-rings {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .skill-ring {
+        width: 120px;
+        height: 120px;
+    }
+    .skill-inner {
+        width: 100px;
+        height: 100px;
+    }
+    .skill-percent {
+        font-size: 22px;
+    }
+    .skill-name {
+        font-size: 11px;
+    }
+    
+    .skill-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 50px;
+    }
+    .skill-card:last-child {
+        grid-column: auto;
+    }
+    .skill-card {
+        padding: 30px 24px;
+    }
+    
     .timeline::before { left: 15px; }
     .timeline-item:nth-child(odd) .timeline-content, .timeline-item:nth-child(even) .timeline-content {
         margin: 0 0 0 40px; width: calc(100% - 40px); text-align: left;
