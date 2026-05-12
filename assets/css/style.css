@@ -229,34 +229,198 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
 .stat-label { font-size: 14px; color: #fff; font-weight: 600; letter-spacing: 2px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 .stat-label-en { font-size: 10px; color: var(--text-secondary); margin-top: 4px; letter-spacing: 3px; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 
-/* --- 9. 技能环与卡片 --- */
-.skill-rings { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; justify-items: center; }
-.skill-ring { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
+/* --- 9. 技能环与卡片 (高级版) --- */
+.skill-rings { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 60px; 
+    justify-items: center; 
+    padding: 20px 0;
+}
+
+.skill-ring { 
+    position: relative; 
+    width: 170px; 
+    height: 170px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
 .skill-ring::before {
-    content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
-    background: conic-gradient(var(--accent-color) calc(var(--progress) * 1%), rgba(111, 255, 0, 0.1) calc(var(--progress) * 1%));
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff calc(100% - 8px));
+    content: ''; 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--accent-color) calc(var(--progress) * 1%), 
+        rgba(111, 255, 0, 0.08) calc(var(--progress) * 1%)
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #fff calc(100% - 10px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #fff calc(100% - 10px));
+    filter: drop-shadow(0 0 10px var(--accent-muted));
+    animation: ringGlow 3s ease-in-out infinite;
 }
+
+@keyframes ringGlow {
+    0%, 100% { filter: drop-shadow(0 0 10px var(--accent-muted)); }
+    50% { filter: drop-shadow(0 0 20px var(--accent-muted)) drop-shadow(0 0 30px rgba(111, 255, 0, 0.3)); }
+}
+
+.skill-ring::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-muted) 0%, transparent 70%);
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.1; }
+}
+
 .skill-inner {
-    width: 130px; height: 130px; border-radius: 50%; background: var(--bg-secondary);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 140px; 
+    height: 140px; 
+    border-radius: 50%; 
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    position: relative;
+    z-index: 1;
 }
-.skill-percent { font-size: 28px; font-weight: 900; color: var(--accent-color); }
-.skill-name { font-size: 12px; color: #fff; margin-top: 4px; font-weight: 600; }
-.skill-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 80px; }
-.skill-card:last-child { grid-column: 2; }
+
+.skill-percent { 
+    font-size: 32px; 
+    font-weight: 900; 
+    background: linear-gradient(135deg, var(--accent-color) 0%, #a8ff78 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(111, 255, 0, 0.5);
+}
+
+.skill-name { 
+    font-size: 13px; 
+    color: rgba(255,255,255,0.8); 
+    margin-top: 6px; 
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* 技能卡片网格 - 2x2 优雅布局 */
+.skill-cards { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 35px; 
+    margin-top: 100px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .skill-card {
-    background: rgba(255, 255, 255, 0.02); padding: 40px 32px; border-radius: 16px;
-    border: 1px solid var(--border-color); transition: all 0.4s ease; backdrop-filter: blur(10px);
+    background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    padding: 45px 35px; 
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
 }
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-muted), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
 .skill-card:hover {
-    border-color: var(--accent-muted); background: rgba(255, 255, 255, 0.04);
-    transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-muted);
+    border-color: var(--accent-muted); 
+    background: linear-gradient(145deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+    transform: translateY(-10px); 
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4), 
+        0 0 30px rgba(111, 255, 0, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.1);
 }
-.skill-card-icon { width: 50px; height: 50px; background: rgba(111, 255, 0, 0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent-color); font-size: 20px; }
-.skill-card-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 12px; }
-.skill-card-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
-.skill-tag { font-size: 12px; color: var(--accent-color); background: rgba(111, 255, 0, 0.1); padding: 6px 14px; border-radius: 20px; }
+
+.skill-card-icon { 
+    width: 55px; 
+    height: 55px; 
+    background: linear-gradient(135deg, rgba(111,255,0,0.15) 0%, rgba(111,255,0,0.05) 100%); 
+    border-radius: 14px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 22px; 
+    color: var(--accent-color); 
+    font-size: 22px;
+    border: 1px solid rgba(111,255,0,0.2);
+    transition: all 0.4s ease;
+}
+
+.skill-card:hover .skill-card-icon {
+    background: linear-gradient(135deg, rgba(111,255,0,0.25) 0%, rgba(111,255,0,0.1) 100%);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(111,255,0,0.3);
+}
+
+.skill-card-title { 
+    font-size: 20px; 
+    font-weight: 800; 
+    color: #fff; 
+    margin-bottom: 14px; 
+    letter-spacing: 0.5px;
+}
+
+.skill-card-desc { 
+    font-size: 14px; 
+    color: rgba(255,255,255,0.65); 
+    line-height: 1.8; 
+    margin-bottom: 24px; 
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag { 
+    font-size: 11px; 
+    color: var(--accent-color); 
+    background: rgba(111, 255, 0, 0.08); 
+    padding: 7px 16px; 
+    border-radius: 25px;
+    border: 1px solid rgba(111,255,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.skill-card:hover .skill-tag {
+    background: rgba(111, 255, 0, 0.15);
+    border-color: rgba(111,255,0,0.3);
+}
 
 /* --- 10. 经历时间轴 --- */
 .timeline { position: relative; max-width: 1000px; margin: 0 auto; padding: 40px 0; }
@@ -272,17 +436,92 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
 .timeline-date { font-size: 13px; color: var(--accent-color); font-weight: 700; margin-bottom: 12px; }
 .timeline-title { font-size: 20px; font-weight: 800; margin-bottom: 12px; color: #fff; }
 
-/* --- 11. 终极优化的 作品集排版 --- */
+/* ================================================
+ * [ZENG] 作品集子分类增强样式
+ * 用于解决超过 30 张图片的拥挤排版问题
+ * ================================================ */
+
+/* 1. 为作品展示区域开启透视距 (Perspective)，开启 3D 视角 */
+#portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 100px 0;
+    perspective: 1500px;
+}
+
+/* 2. 重构子标题样式，符合赛博网格设计 */
+.portfolio-category-title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 80px 0 40px;
+    color: var(--text-primary);
+    position: relative;
+    letter-spacing: 2px;
+}
+
+/* 3. 子标题的荧光绿霓虹指示器 */
+.portfolio-category-title::before {
+    content: '[';
+    color: var(--accent-color);
+    margin-right: 8px;
+    font-weight: 900;
+}
+.portfolio-category-title::after {
+    content: ']';
+    color: var(--accent-color);
+    margin-left: 8px;
+    font-weight: 900;
+}
+
+/* 4. 分类标题的底部装饰线 */
+.portfolio-category-title::after {
+    content: ']';
+    color: var(--accent-color);
+    margin-left: 8px;
+    font-weight: 900;
+}
+
+/* 5. 作品集展示容器 */
 .portfolio-showcase {
-    max-width: 1000px; margin: 0 auto; padding: 40px 0; display: flex; flex-direction: column;
-    align-items: center; gap: 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
 }
+
+/* 6. 图片容器 */
 .portfolio-image-wrapper {
-    width: 100%; border-radius: 16px; overflow: hidden; background: var(--bg-secondary);
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-secondary);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    transition: all 0.4s ease;
 }
-.lazy-image { opacity: 0; transition: opacity 0.8s ease, transform 0.5s ease; width: 100%; height: auto; display: block; }
-.portfolio-image-wrapper:hover .lazy-image { transform: scale(1.02); }
+
+.portfolio-image-wrapper:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* 7. 懒加载图片 */
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.5s ease;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.portfolio-image-wrapper:hover .lazy-image {
+    transform: scale(1.02);
+}
 
 /* --- 12. 底部与联系方式 --- */
 .contact-content {
@@ -439,6 +678,21 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
+/* --- 专为"专项视觉系列"打造的高级网格排版 (CSS Grid) --- */
+.portfolio-grid-showcase {
+    max-width: 1200px;
+    margin: 60px auto 100px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.portfolio-grid-showcase .portfolio-image-wrapper {
+    margin: 0;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
 /* --- 15. 响应式适配 --- */
 @media (max-width: 768px) {
     .nav-menu {
@@ -453,33 +707,44 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
     /* 技能部分移动端优化 */
     .skill-rings {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 30px;
+        padding: 10px 0;
     }
     .skill-ring {
-        width: 120px;
-        height: 120px;
+        width: 130px;
+        height: 130px;
+    }
+    .skill-ring::after {
+        display: none;
     }
     .skill-inner {
-        width: 100px;
-        height: 100px;
+        width: 108px;
+        height: 108px;
     }
     .skill-percent {
-        font-size: 22px;
+        font-size: 24px;
     }
     .skill-name {
         font-size: 11px;
+        letter-spacing: 0;
     }
     
     .skill-cards {
         grid-template-columns: 1fr;
-        gap: 20px;
-        margin-top: 50px;
-    }
-    .skill-card:last-child {
-        grid-column: auto;
+        gap: 25px;
+        margin-top: 60px;
     }
     .skill-card {
-        padding: 30px 24px;
+        padding: 35px 26px;
+        border-radius: 16px;
+    }
+    .skill-card-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 19px;
+    }
+    .skill-card-title {
+        font-size: 17px;
     }
     
     .timeline::before { left: 15px; }
@@ -487,5 +752,21 @@ section { min-height: 100vh; display: flex; align-items: center; position: relat
         margin: 0 0 0 40px; width: calc(100% - 40px); text-align: left;
     }
     .timeline-dot { left: 15px; transform: none; }
-    .portfolio-showcase { padding: 30px 10px; gap: 40px; }
+    .portfolio-showcase { 
+        padding: 0; 
+        gap: 50px; 
+    }
+    .portfolio-category-title {
+        font-size: 16px;
+        margin: 50px 0 25px;
+        letter-spacing: 1px;
+    }
+    
+    /* 平板端一行 2 张 */
+    .portfolio-grid-showcase { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+@media (max-width: 480px) {
+    /* 手机端变回一行 1 张 */
+    .portfolio-grid-showcase { grid-template-columns: 1fr; gap: 40px; }
 }

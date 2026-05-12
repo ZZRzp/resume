@@ -85,7 +85,7 @@ const NavActiveModule = (() => {
                     const section = document.getElementById(sectionId);
                     if (section) {
                         const rect = section.getBoundingClientRect();
-                        if (rect.top <= 150 && rect.bottom > 150) {
+                        if (rect.top <= 120 && rect.bottom > 120) {
                             currentSection = sectionId;
                         }
                     }
