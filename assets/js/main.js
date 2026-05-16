@@ -196,22 +196,74 @@ const LazyLoadingModule = (() => {
     const init = () => {
         try {
             const lazyImages = document.querySelectorAll('.lazy-image');
+            
+            // 立即加载首屏可见图片
+            const loadVisibleImages = () => {
+                lazyImages.forEach(img => {
+                    const rect = img.getBoundingClientRect();
+                    if (rect.top < window.innerHeight + 200 && rect.bottom > -200) {
+                        loadImage(img);
+                    }
+                });
+            };
+
+            const loadImage = (img) => {
+                if (img.dataset.srcLoaded) return;
+                const src = img.getAttribute('data-src');
+                if (!src) return;
+                
+                img.dataset.srcLoaded = 'true';
+                img.src = src;
+                img.onload = () => {
+                    img.style.opacity = '1';
+                };
+                img.onerror = () => {
+                    img.style.opacity = '1';
+                    console.warn('Image load failed:', src);
+                };
+            };
+
+            // 方案1: 使用 IntersectionObserver（现代浏览器）
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries, obs) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.getAttribute('data-src');
-                            img.onload = () => img.style.opacity = '1';
-                            obs.unobserve(img);
+                            loadImage(entry.target);
+                            obs.unobserve(entry.target);
                         }
                     });
-                }, { rootMargin: '300px' });
-                lazyImages.forEach(img => observer.observe(img));
-            } else {
-                lazyImages.forEach(img => { img.src = img.getAttribute('data-src'); img.style.opacity = '1'; });
+                }, { 
+                    rootMargin: '400px',
+                    threshold: 0.01
+                });
+
+                lazyImages.forEach(img => {
+                    if (!img.dataset.srcLoaded) {
+                        observer.observe(img);
+                    }
+                });
             }
-        } catch (error) { handleError(error, 'LazyLoadingModule'); }
+
+            // 方案2: 立即加载所有图片作为后备（兼容旧浏览器）
+            // 同时确保首屏图片立即加载
+            loadVisibleImages();
+
+            // 方案3: 滚动事件兜底（防止 IntersectionObserver 失效）
+            let scrollTimeout;
+            const handleScroll = () => {
+                if (scrollTimeout) clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    loadVisibleImages();
+                }, 100);
+            };
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('resize', handleScroll, { passive: true });
+            window.addEventListener('orientationchange', handleScroll, { passive: true });
+
+        } catch (error) { 
+            handleError(error, 'LazyLoadingModule'); 
+        }
     };
     return { init };
 })();

@@ -417,5 +417,36 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    
+    <!-- 图片加载保障脚本 -->
+    <script>
+        // 页面加载完成后强制检查所有懒加载图片
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.querySelectorAll('.lazy-image').forEach(function(img) {
+                    if (!img.src || img.src.indexOf('data:') === 0 || img.src.indexOf('http') === -1) {
+                        var src = img.getAttribute('data-src');
+                        if (src) {
+                            img.src = src;
+                            img.style.opacity = '1';
+                        }
+                    }
+                });
+            }, 1000);
+
+            // 滚动时强制加载
+            window.addEventListener('scroll', function() {
+                document.querySelectorAll('.lazy-image').forEach(function(img) {
+                    if (!img.src || img.src.indexOf('data:') === 0) {
+                        var src = img.getAttribute('data-src');
+                        if (src) {
+                            img.src = src;
+                            img.style.opacity = '1';
+                        }
+                    }
+                });
+            }, { passive: true });
+        });
+    </script>
 </body>
 </html>
